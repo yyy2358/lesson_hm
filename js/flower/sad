@@ -1,0 +1,151 @@
+#include<iostream>
+using namespace std;
+#define OVERFLOW 0  
+#define MAXSIZE 100     //队列的最大值
+typedef struct {
+    char* base;
+    int front;
+    int rear;
+}SqQueue;
+//初始化一个队列
+void InitSqQueue(SqQueue &Q) {
+    Q.base = (char*)malloc(sizeof(char)*MAXSIZE);
+    if (!Q.base) 
+    {
+        cout<<"存储分配失败";
+        exit(OVERFLOW);
+    }
+    Q.front = Q.rear = 0;
+}
+//打印队列
+void PrintQueue(SqQueue Q) 
+{
+    if (Q.rear == Q.front) 
+    {
+         cout<<"队空";
+         exit(OVERFLOW);
+         return;
+     }
+    int flag = Q.front;
+    while (Q.rear!= flag) 
+    {
+        cout<<Q.base[flag]<<' ';
+        flag=(flag+1)%MAXSIZE;
+     }
+    cout<<endl;
+}
+//入队
+void EnQueue(SqQueue &Q, char elem) 
+{
+    if ((Q.rear + 1) % MAXSIZE == Q.front) 
+    {
+        cout<<"队满";
+        exit(OVERFLOW);
+    }
+    Q.base[Q.rear] = elem;      //新元素插入队尾
+    Q.rear = (Q.rear + 1) % MAXSIZE;        //队尾指针加1
+}
+//出队
+void OutQueue(SqQueue &Q, char &e) 
+{
+    if (Q.front == Q.rear) 
+    {
+        cout<<"队空";
+        exit(OVERFLOW);
+        return;
+    }
+    e = Q.base[Q.front];        //将队头元素赋值给e
+    Q.front = (Q.front + 1) % MAXSIZE;      //队头指针加1
+}
+//求队列元素个数
+int CountQueue(SqQueue Q) 
+{
+    return (Q.rear - Q.front + MAXSIZE) % MAXSIZE;
+}
+//判断队列是否为空
+int EmptyQueue(SqQueue Q) 
+{
+    if (Q.front == Q.rear)
+        return 1;
+    else
+        return 0;
+}
+//（1）实现10辆车过江           
+//（2）实现10辆以上车过江
+//10辆车过江
+void FerryCars10(SqQueue &Q, SqQueue &Q1, SqQueue &Q2, SqQueue &Q3) 
+{
+    int i=0, j= CountQueue(Q);
+    while (j<10)
+    {
+        if (i<4&&!EmptyQueue(Q1))
+        {
+            char e=0;
+            OutQueue(Q1, e);
+            EnQueue(Q, e);
+            i++; j++;
+        }
+        else if (i == 4&&!EmptyQueue(Q2))
+        {
+            char e=0;
+            OutQueue(Q2, e);
+            EnQueue(Q, e);
+            j++;
+            i = 0;
+        }
+        else
+        {
+            while (i<4&&!EmptyQueue(Q2))
+            {
+                char e=0;
+                OutQueue(Q2, e);
+                EnQueue(Q, e);
+                i++; j++;
+         }
+            i=0;
+        }
+        if (EmptyQueue(Q1) && EmptyQueue(Q2))
+        {
+            j=11;
+        }
+    }
+}
+//10辆车过江函数调用，输入1表示客车，输入2表示货车
+void FerryCars10_Menu() 
+{
+   SqQueue Q,Q1,Q2,Q3;
+   InitSqQueue(Q); InitSqQueue(Q1);
+   InitSqQueue(Q2); InitSqQueue(Q3);
+   int count = 0;
+   while (count<10)
+   {
+       int choose;
+       scanf("%d",&choose);
+       if (choose == 1)
+       {
+           EnQueue(Q1, 'A');
+           count++;
+       }
+       else if (choose == 2)
+       {
+           EnQueue(Q2, 'B');
+           count++;
+       }
+       else if (choose == 0)
+       break;
+       else
+       continue;
+   }
+   PrintQueue(Q1);
+   PrintQueue(Q2);
+   FerryCars10(Q, Q1, Q2,Q3);
+   while (!EmptyQueue(Q))
+   {
+       char elem;
+       OutQueue(Q, elem);
+       EnQueue(Q3, elem);
+   }
+   PrintQueue(Q3);
+}
+//10辆以上的车过江函数
+void FerryCars_over10(SqQueue &Q, SqQueue& Q1, SqQueue& Q2,SqQueue&

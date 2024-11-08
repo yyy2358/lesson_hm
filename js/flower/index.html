@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //js 对象字面量 创建一个对象
+        //面向对象 oo编程
+        //js具有强大的表现力 简单
+        const dai ={
+            name:"戴佑圣",
+            age:18,
+            hometown:'吉安' ,
+            hobbies:['唱'],//js没有数据，也是对象
+            isSingle:true,//boolean
+           //形参
+           sendFlower(target) {
+            target.receiveFlower(dai);
+
+            }
+        }
+        //申明了常量对象 对象字面量 从字面意义就可以了解对象
+        const xm={
+       name:"小美",
+       age:19,
+       hometown:'九江',
+       hobbies:['跳舞','唱歌'],
+       sex:'female',
+         xq:50,
+       receiveFlower(sender){
+        if (xm.xq<80){
+            console.log('gun~~')
+        }else{
+            console.log(sender.name+'送了花，万达走一波')
+        }
+        //恒等
+        console.log(sender.name+'送了花')
+         }
+        }//用js做导演
+
+
+           const xh={
+            name:'小红',
+            hometown:'吉安',
+            //收花的权利，接口 interface
+            receiveFlower(sender){
+                // if( sender.name==='戴佑圣')
+                // console.log('让我们在一起把，我暗恋你很久了。。。')
+                // return; 
+                // xm.receiveFlower(sender)
+                setTimeout(function() {
+                    xm.receiveFlower(sender)
+                }, 2000)
+            }
+        }
+    </script>
+</body>
+</html>
