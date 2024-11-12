@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Green Light Extension",
+    "version": "1.0",
+    "description": "一个简单的Chrome扩展示例",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "tabs"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
