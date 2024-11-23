@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    *{
+       margin: 0;
+       padding: 0;
+       }
+       #box1{
+       margin: 20px;
+       width: 200px;
+       height: 200px;
+       padding: 5px;
+       border: 1px solid red;
+       background-color: green;
+       position: relative;
+       top: 30px;
+       left: 30px;
+       }
+       #box2{
+       margin: 10px;
+       height: 300px;
+       width: 300px;
+       background-color: yellow;
+      
+       }
+       #box3{
+       height: 50px;
+       width: 50px;
+       background-color: pink;
+       position: absolute;
+       top: 10px;
+       left: 10px;
+       }
+       </style>
+</head>
+<body>
+    <!-- 
+    页面绘制出来
+    box1 在box2的上方  正常的文档流
+    html 文档流 和 css结合 样式生效 盒模型 
+    脱离文档流absolute  relative
+    -->
+    <div id="box1"> <div id="box3"></div></div>
+    <div id="box2"></div>
+ 
+</body>
+</html>

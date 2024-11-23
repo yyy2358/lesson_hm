@@ -55,6 +55,28 @@ use commit
 - 后悔药
 - 分几次add，然后一次性commit
  进货，有辆买菜车 （git add 多次） 买完了 （git commit 一次）买好菜了
+ 仓库里提交的是版本号，可以有多个文件
+
+ - git status 让我们了解当前仓库的状态，摸鱼后还能人间清醒
+
+ - git log 
+ 代码提交记录
+ --oneline 一行显示
+
+ - 暂存区 仓库
+  - 一次性多个文件多次加入暂存区，后悔，组成一个提交逻辑（任务）
+  - 一次commit -m 要规范 讲清楚任务
+  - 不要随便提交commit，围绕开发需求，有逻辑性
+  - 一个商务 2-5次commit 多摸鱼
+
+- ls 和 dir 是两个命令，用于列出当前目录中的文件和子目录。在Git中，你可以在任何目录中使用这些命令来查看目录结构。
+
+- git status 是一个Git命令，用于显示当前仓库的状态。当你运行这个命令时，Git会告诉你哪些文件被修改、添加或删除了，以及哪些文件还没有被跟踪。
+
+- 修改了代码之后要重新提交并写入commit
+
+git add .     用于将当前目录及其子目录中的所有更改（包括新文件、修改过的文件和删除的文件）添加到 Git 的暂存区    
+git commit -m 'learn git'        提交信息
 
 
 
@@ -62,7 +84,6 @@ use commit
 
 git config --global user.ui true
 git config --list
-cd .git    cd ..   ls   dir
-git status
-更新了代码怎么修改
-dc91962 版本号
+cd .git   cd ..   
+讲的深入，跟故事一起记住，记得深
+HEAD -> master
