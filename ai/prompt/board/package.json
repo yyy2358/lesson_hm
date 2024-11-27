@@ -1,0 +1,16 @@
+{
+  "name": "board",
+  "version": "1.0.0",
+  "description": "- 在国内大厂，但做的是全球业务\r  - 英语\r  - AI翻译",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.73.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
