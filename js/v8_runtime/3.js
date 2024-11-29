@@ -3,7 +3,7 @@ function bar(){
 }
 
 function foo(){
-    var myname = '肖总'
+    var myname = 'zhangsan'
     bar()
     console.log(myname);
 }

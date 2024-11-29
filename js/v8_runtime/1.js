@@ -9,4 +9,4 @@ function func(){
 }
 let b=2;//词法环境 
 b++;//词法环境里查找b
-//var 函数 变量环境     let const 词法环境
+//var 函数 变量环境     let const
