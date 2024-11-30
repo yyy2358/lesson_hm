@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI User Rag chatbot</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<div class="row col-md-6 col-md-offset-3">
+<table class="table table-striped" id=" user_table">
+<thead>
+    <tr>
+        <th>Id</th>
+        <th>姓名</th>
+        <th>家乡</th>
+    </tr>
+</thead>
+<tbody>
+    
+    </tbody>
+</table>
+<div class="row">
+    <form name="aiForm" action="http://www.baidu.com">
+      <div class="from-group">
+        <label for="questionInput">提问</label>
+        <input 
+          type="text" 
+          id="questionInput"
+          class="form-control"
+          name="question"
+          placeholder="请输入问题"
+          required
+        >
+      </div>
+      <button type="submit" class="btn btn-default" name="btn">查询</button>
+    </form>
+</div>
+<div class="row" id="message"></div>
+</div>
+</div>
+<script>
+// js 主动向后端发送数据接口请求
+ // 使用fetch函数发送GET请求到http://localhost:3001/users（URL）
+ //前端向后端拉取数据
+ const tableBody= document.querySelector('table tbody');
+ const oForm = document.forms['aiForm'];
+ let usersData ;
+
+
+fetch('http://localhost:3001/users')
+// 当请求成功时，将响应数据解析为JSON格式
+//.then 代表数据已经到达前端 二进制数据->json（res）
+.then(res => res.json())
+// 当数据解析成功时，将解析后的数据打印到控制台
+
+.then(users => {
+    usersData = users;
+    //console.log(data)
+    //for of
+    for (let user of users){
+        //console.log(user);
+        //把user里的数据添加到页面上
+        const tr = document.createElement('tr');
+
+         // for in json 对象遍历   优化
+        for(let key in user){
+         const td = document.createElement('td');
+         td.innerText = user[key];
+         tr.appendChild(td);
+         //console.log(key, user[key])
+        }
+
+       
+        tableBody.appendChild(tr);
+        
+
+    }
+})
+ oForm.addEventListener('submit', e=>{
+    //事件对象
+    // console.log(e);
+    e.preventDefault();// 阻止表单默认提交行为
+    // fetch 在页面不刷新的时候向ai server 发出请求
+    
+    // const question = oForm.elements['question'].value;
+    // 向后端发送数据
+    // web 2.0 动态页面开发 js 可以主动拉取数据
+    const question = oForm.question.value.trim();
+    if(!question){
+        alert('请输入问题');
+        return;
+    }
+
+    fetch(`http://localhost:1314/api?question=${question}&data=${JSON.stringify(usersData)}`)
+        .then(data => data.json())
+        .then(data =>{
+        console.log(data);
+        document.getElementById('message').innerText = data.result;
+       })
+    })
+</script>
+</body>
+</html>
