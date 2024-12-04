@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写定时器</title>
+</head>
+<body>
+ <script>
+    function customSetInterval(fn,time){
+        let intervalId = null;
+      function loop(){
+          intervalId=setTimeout(()=>{
+            fn();   
+            loop();
+          },time)
+        }
+        loop();
+        return ()  =>{
+            clearTimeout(intervalId)
+        }
+    }
+const interval  = customSetInterval(function(){
+    console.log('莉莉丝呵呵呵，拿下')
+},1000)
+setTimeout(()=>{
+    interval()
+},5000)
+ </script>   
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+</head>
+<body>
+    <button id="btn2">提前关闭setTimeout定时器</button>
+    <button id="btn">关闭定时器</button>
+
+    
+
+<script>
+    //不卡这个，不能响应其他事件和交互，js 单线程语言
+//异步
+//1-5ms 延迟 
+const   timeout = setTimeout(function(){
+    console.log('----');
+},10000)
+const   btn = document.getElementById('btn')
+const  btn2 = document.getElementById('btn2')
+btn.addEventListener('click',function(){
+    clearInterval(interval)
+})
+btn2.addEventListener('click',function(){
+    clearTimeout(timeout)
+})
+
+//同步代码
+// while(true){
+
+// }
+//
+const  interval  = setInterval(function(){
+    //console.log('qa');
+},1000)
+console.log(setTimeout (function(){}))
+console.log(123)
+console.log(interval)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this more</title>
+</head>
+<body>
+    <script>
+        var name = "windowName";
+        var a = {
+            name :"肖宇泉",
+            func1:function(){
+                console.log(this.name);
+            },
+            func2:function(){
+                //箭头函数没有this
+                //简单的，不管this ，由词法作用域决定（func2），
+                // 在编译阶段就决定了（调用之前）
+                console.log("func2",this);
+             //let _this = this;
+
+                setTimeout((()=>{//匿名函数，普通函数this指向全局
+                   //this丢失（全局里没有func1）
+                  //=>换成function（）  _this.func1()
+                    //手动指定this的指向
+                    //call 编译阶段
+                }),100)
+                }
+        }
+        a.func2();
+    </script>
+</body>
+</html>
