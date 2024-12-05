@@ -5,9 +5,8 @@ var a= {
         console.log(this.name)
     },
     fun2:function(){
-      setTimeout(()=>{
-        //this被指定了
-       this.func1();//指向全局，但是全局没有定义func，严格模式下是undefined
+      setTimeout(function(){
+          this.func1()
       },1000)
     }
 }

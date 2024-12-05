@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div>
+    <label for="unDebounceInput">用户搜索</label>
+    <input 
+    type="text"
+    id="unDebounceInput"
+    placeholder="请输入要搜索的用户名字"
+    >
+  </div>  
+  <script>
+ // 通往后端接口
+ const oInput = document.getElementById('unDebounceInput');
+ oInput.addEventListener('keyup', function() {
+    let value = this.value;
+  // console.log('用户输入：', this.value);//（）oInput调用它，作为事件的处理函数，内部的this指向事件发生的对象，this指向事件的目标元素
+ fetch('http://localhost:3001/users')
+    .then(res => res.json())
+    .then(users => {
+    // console.log(users);
+    const filterUsers = users.filter(//筛选
+        user => user.name.includes(value)//回调函数，user.name包含需要的值，返回值为true，留下来
+    );
+    console.log( filterUsers);
+
+})
+})
+
+  </script>
+</body>
+</html>

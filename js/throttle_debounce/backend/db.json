@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "谭弘权"
+    },
+    {
+      "id": "2",
+      "name": "熊凯文"
+    },
+    {
+      "id": "3",
+      "name": "史来俊"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "title": "学习APIFOX",
+      "content": "post1 content",
+      "userId": 1
+    }
+  ]
+}
