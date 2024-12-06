@@ -14,24 +14,67 @@
     placeholder="请输入要搜索的用户名字"
     >
   </div>  
+  <div>
+
+    <ul id="users">
+
+    </ul>
+  </div>
   <script>
+  const oUL = document.querySelector('#users');
  // 通往后端接口
  const oInput = document.getElementById('unDebounceInput');
- oInput.addEventListener('keyup', function() {
-    let value = this.value;
+ const debounceNameSearch = debounce(handleNameSearch, 500);
+ oInput.addEventListener('keyup', debounceNameSearch)
+
+  function handleNameSearch(){
+    let value = oInput.value.trim();// 去除前后空格
+    if (value == '') {
+        oUL.innerHTML = '';
+        return;
+    }
   // console.log('用户输入：', this.value);//（）oInput调用它，作为事件的处理函数，内部的this指向事件发生的对象，this指向事件的目标元素
  fetch('http://localhost:3001/users')
     .then(res => res.json())
     .then(users => {
     // console.log(users);
-    const filterUsers = users.filter(//筛选
+    //箭头函数的优雅 + filter的新功能            
+    const filterUsers = users.filter(//筛选  替换了for each
         user => user.name.includes(value)//回调函数，user.name包含需要的值，返回值为true，留下来
+        //将回调函数满足条件的返回值为true的留下来
     );
-    console.log( filterUsers);
+   // oUL.innerHTML =      map es6新增方法
+
+   // Array  在es6中新增的方法  遍历   
+  oUL.innerHTML =  filterUsers.map(user =>//filterUsers.map(function(user) {return `<li>${user.name}</li>`}).join("");
+          
+         `
+          <li>
+            ${user.name}
+          </li>
+          `).join(""); //join("") 方法将数组连接成一个字符串，
+    // for(let user of filterUsers) {
+    //     const oLI = document.createElement('li');
+    //     oLI.innerText = user.name;
+    //     oUL.appendChild(oLI);
+    // }
+ 
 
 })
-})
-
+}
+    //防抖
+    //高阶函数
+    function debounce(fn, delay) {
+      let id;
+        return function() {
+          //console.log('debounce');
+          //限流
+          clearTimeout(id);
+          id = setTimeout(() => {
+            fn();
+          }, delay)
+        }//超过了0.5s还没有输入，直接执行
+    }
   </script>
 </body>
 </html>
