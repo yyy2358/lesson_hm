@@ -58,23 +58,24 @@
     //     oLI.innerText = user.name;
     //     oUL.appendChild(oLI);
     // }
- 
-
 })
+ .catch(error => {
+      console.error('获取用户数据时出错:', error);
+    });
 }
     //防抖
     //高阶函数
-    function debounce(fn, delay) {
-      let id;
-        return function() {
-          //console.log('debounce');
+     function debounce(fn, delay) {
+       let id;
+         return function() {
+           //console.log('debounce');
           //限流
-          clearTimeout(id);
-          id = setTimeout(() => {
-            fn();
-          }, delay)
-        }//超过了0.5s还没有输入，直接执行
-    }
+           clearTimeout(id);
+           id = setTimeout(() => {
+             fn();
+         }, delay)
+       }//超过了0.5s还没有输入，直接执行
+     }
   </script>
 </body>
 </html>

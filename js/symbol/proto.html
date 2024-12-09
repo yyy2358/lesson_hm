@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let obj = {
+    name:'张三',
+    hobbies:['健身','写代码']
+}//先找自己的，找不到就找原型链
+let obj2 = {
+    name:'李四',
+    kangfu:['玉女剑法']
+}
+obj.__proto__ = obj2;
+</script>   
+</body>
+</html>

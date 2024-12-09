@@ -39,6 +39,7 @@
     url 接口服务  restful 
   - API接口
 
+web请求模拟器  可以模拟发送请求
 
 - filter map 
     都是Arry.prototype 原型上的方法，所有的数组都有
