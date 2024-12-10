@@ -27,4 +27,4 @@
      因为symbols 独特设计，就是提供唯一值的（key，value），智只能通过getOwnPropertyDescriptors 来获取
 
 - ownProperty?
-  - 
+  -
