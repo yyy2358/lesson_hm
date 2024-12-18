@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:75px;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿里双十一</title>
+    <script>
+    //script标签 会阻塞 页面渲染  所以 放在head标签里面
+    //用阻塞来动态设置 html font-size
+    //立即执行函数
+   (function(){
+        function calc(){
+        const w = document.documentElement.clientWidth;
+        console.log(w);
+        document.documentElement.style.fontSize 
+        =75*( w/750) + 'px';//动态设置  repenape 移动端设计稿750  wsm/16?
+        }//设备宽度改变时
+        calc();
+        //
+        window.onresize = function(){
+           console.log('resize')
+           calc();
+        }
+        console.log('立即执行函数');
+        })()
+    </script>
+    <style>
+  *{
+    margin:0;
+    padding:0;
+  }
+    </style>
+</head>
+<body>
+    <div>
+    <div style="width:10rem;height: 2rem;background-color: red;"></div>
+    <div style="font-size:0;">
+    <div style="width:5rem;height: 2rem;background-color: green;display: inline-block;font-size:20px;color:white;vertical-align: top;">111</div>
+    <div style="width:5rem;height: 2rem;background-color: blue;display: inline-block;vertical-align: top;">222</div>
+    </div>
+    </div>
+</body>
+</html>
