@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Couter</title>
+    <!-- Vue 3 
+    不是本地,通过cdn 引入   cdn:内容分发网络,引入就可以使用vue 
+    静态资源 (html、css、js、images)  动态(java、node、数据库 服务器集群)
+    cdn 快速内容访问和发布的机制 -->
+    <script src=./vue.js></script>
+</head>
+<body>
+    <!-- vue 3 工作的挂载点  让vue接管前端编程世界
+    DOM appendChild 性能不好   -->
+    <div id="root">
+        <!-- Vue应用的工作领地 -->
+         <!-- 模板占位符 -->
+          <h1>{{str}} 走向{{LLM}} 智能前端！</h1>
+         <p>Count:{{count}}</p>
+         <button @click="increment">+1</button>
+    </div>
+    <script type="module">
+    // console.log('hello vue3')
+    const {
+        createApp,//创建vue 应用
+        ref,//响应式数据
+    }= Vue
+    createApp({
+        //准备应用需要的数据
+        setup(){
+        // const count=ref(0);
+        //let count = 0;//简单的变量
+        let count = ref(0)//响应式对象
+        console.log(Object.prototype.toString.call(count))
+        const str = ref("hello vue3")
+        const increment = ()=>{
+            // console.log('---------')
+            count.value++
+        }
+        return {
+        LLM:'Llama3',
+        count,
+        str,
+        increment
+        }
+        
+    }
+      
+    }).mount('#root')//挂载点
+    </script>
+</body>
+</html>

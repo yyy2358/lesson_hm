@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <title>React Counter Example</title>
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <!-- 引入 Babel 编译 JSX 使用 BootCDN -->
+    <script src="./js/babel.min.js"></script>
+</head>
+<body>
+    <!-- 应用程序挂载点 -->
+     <!-- 挂载点 -->
+    <div id="root"></div>
+    <script type="text/babel">
+    //ReactDOM.render(<h1>Hello World!</h1>, document.getElementById('root'))
+    //函数组件
+    const {
+        useState
+    } = React;
+    function Couter(){
+        const [count, setCount] = React.useState(0);//数据状态
+        //要修改数据，就必须调用setCount函数
+        // const count = 0;
+        const increment = ()=>{
+            setCount(count +1)//不能++，因为count是一个常量
+        }
+     return(
+        <div>
+            Count:{count}
+            <button onClick={increment}>+1</button>
+        </div>
+     )
+    }
+    ReactDOM.render(<Couter />, document.getElementById('root'))//渲染一个couter函数组件
+    </script>
+</body>
+</html>
