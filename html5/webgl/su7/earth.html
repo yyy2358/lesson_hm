@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D 地球</title>
+    <!-- 画地球 选择框架 加速 -->
+    <script src="https://cdn.bootcss.com/three.js/r83/three.min.js"></script>
+</head>
+<body>
+    <canvas id="webglcanvas"></canvas>
+    <script>
+      //3d 地球
+      //3D 世界就是镜头拍出的世界，导演
+     let canvas,//3d 容器
+       camera,//镜头
+       scene,//场景
+       renderer,
+       group;//组合
+       //物品
+    let mouseX = 0,
+        mouseY = 0;//mousemove 坐标
+    let windowHalfX = window.innerWidth / 2,//确认球心
+        windowHalfY = window.innerHeight / 2;//窗口的一半
+    init();
+    animate();
+    // 准备
+    function init(){
+
+       canvas = document.getElementById('webglcanvas');//DOM
+       camera = new THREE.PerspectiveCamera(60, //实例化 相机
+       window.innerWidth / window.innerHeight, 1, 2000);//横着/竖着拿 
+       //相机离scene场景的距离 
+       camera.position.z = 500;//距离
+       scene = new THREE.Scene();//实例化 场景
+       scene.background = new THREE.Color(0xffffff);//背景颜色
+
+       group = new THREE.Group();//组合
+       scene.add(group);
+       //纹理加载器
+       let loader = new THREE.TextureLoader();//简单的加载器
+       loader.load('iwEcAqNqcGcDAQTRCAAF0QQABrCO1x4cDNHFEwdPwasjNdQAB9IoJU2sCAAJomltCgAL0gAJD0E.jpg_720x720q90.jpg', function(texture){
+         let geometry = new THREE.SphereGeometry(200, 20,20);//球体
+         let material = new THREE.MeshBasicMaterial({//材质
+           map: texture
+         });
+         let mesh = new THREE.Mesh(geometry, material);//网络
+         group.add(mesh);
+         //渲染器 目标是canvas
+         renderer = new THREE.WebGLRenderer({
+           canvas: canvas,
+           antialias: true
+         });
+         renderer.setSize(window.innerWidth, window.innerHeight);
+        //  renderer.render(scene,camera);
+        document.addEventListener('mousemove', onDocumentMouseMove,false);
+       })
+
+
+    }
+    function animate (){
+        //递归 屏幕的刷帧率 60帧/s
+        requestAnimationFrame(animate);
+        render()
+    }
+
+    function render(){
+      //旋转
+      group.rotation.y -= 0.005;
+      camera.lookAt(scene.position);
+
+      renderer.render(scene, camera);
+    }
+    </script>
+</body>
+</html>
