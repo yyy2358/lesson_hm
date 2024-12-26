@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE 更关注于业务（数据 + 配套语法）</title>
+</head>
+<body>
+    <div id="app">
+    <h2>{{title}}</h2>
+  <input type="text" id="todo-input" v-model="title">
+    </div>
+  <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+  <script>
+   const App = {
+    // vue 2.0 
+    data(){
+      return {//数据放在return    双向数据绑定
+        title:'hello world'
+      }
+    }
+   }
+   Vue.createApp(App).mount('#app')//挂载 
+  </script>
+</body>
+</html>
