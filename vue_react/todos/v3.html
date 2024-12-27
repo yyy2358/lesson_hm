@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>
+            {{title}}
+            <imput type="text" v-model="title">
+        </h2>
+        <h1 @click="add">{{count}} * 2 = {{double}}</h1>
+    </div>
+    <script>
+        //组合式API 取代 选项式
+        const {ref,computed } = Vue
+
+        let App = {
+          setup(){
+            //count 相关模块
+            let count = ref(0)
+            //错误 let title = ref('todos')
+            const double = computed(()=>
+              count.value * 2
+            )
+            function add() {
+              count.value++
+            }
+            return {
+              count,
+              double,
+              add
+            }
+          }
+        }
+
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+</html>

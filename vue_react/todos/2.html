@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+    <style>
+        .done {
+          color: gray;
+          text-decoration: line-through;
+        }
+</style>
+</head>
+<body>
+  <!-- 挂载点，也是vue 作用范围 -->
+  <div id="app">
+    <h1>Todos</h1>
+    <div>
+      <span>新增待办：</span>
+      <input type="text" v-model="title" @keydown.enter="addTodo" />
+    </div>
+    <ul>
+      <li v-for="(todo, index) in todos">
+        <input type="checkbox" v-model="todo.done" />
+        <span :class="{done:todo.done}">{{todo.title}}</span>
+      </li>
+    </ul>
+    <div>
+        全选<input type="checkbox" v-model="allDone" @change="toggleAll" />
+        <span>{{active}} / {{all}}</span>
+        <button @click="removeSelected">删除选中</button>
+    </div>
+  </div>
+  <script>
+  const App = {
+    data() {
+      return {
+        title: '',
+        todos: [
+          {title: '吃饭', done: false},
+          {title: '睡觉', done: true},
+        ]
+      }
+    },
+    methods: {
+      addTodo() {
+        this.todos.push({title: this.title, done: false})
+        this.title = ''
+      },
+      toggleAll() {
+        this.todos.forEach(todo => {
+          todo.done = this.allDone;
+        });
+      },
+      removeSelected() {
+        this.todos = this.todos.filter(todo => !todo.done);
+      }
+    },
+    computed: {
+      all() {
+        return this.todos.length
+      },
+      active() {
+        return this.todos.filter(todo => !todo.done).length
+      },
+      allDone: {
+        get() {
+          return this.todos.every(todo => todo.done);
+        },
+        set(value) {
+          this.todos.forEach(todo => {
+            todo.done = value;
+          });
+        }
+      }
+    }
+  }
+  Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

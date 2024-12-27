@@ -13,7 +13,7 @@
 
 - jquery  封建社会
   js 框架，DOM 操作简单 
-  $ 等封装简化了js开发（对开发者友好）     **web3.0
+  $ 等封装简化了js开发（对开发者友好）    
 
 - 没有解决 web 1.0（csdn blog）->2.0 过渡问题 （tuitter,facebook）
   - JS 代码量增大， 性能排在第一位
