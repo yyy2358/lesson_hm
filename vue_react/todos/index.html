@@ -26,6 +26,7 @@
     <div>
       全选 <input type="checkbox" v-model="allDone">
       <span>{{active}} / {{all}}</span>
+      <button @click="removeSelected">删除选中</button>
     </div>
   </div>
   <script>
@@ -43,6 +44,9 @@
       addTodo() {
         this.todos.push({title: this.title, done: false})
         this.title = ''
+      },
+      removeSelected() {
+        this.todos = this.todos.filter(todo => !todo.done);
       }
     },
     computed: {

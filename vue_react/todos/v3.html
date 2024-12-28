@@ -10,7 +10,7 @@
     <div id="app">
         <h2>
             {{title}}
-            <imput type="text" v-model="title">
+            <input type="text" v-model="title">
         </h2>
         <h1 @click="add">{{count}} * 2 = {{double}}</h1>
     </div>
@@ -20,6 +20,7 @@
 
         let App = {
           setup(){
+            let title = ref('todos')
             //count 相关模块
             let count = ref(0)
             //错误 let title = ref('todos')
@@ -32,7 +33,8 @@
             return {
               count,
               double,
-              add
+              add,
+              title
             }
           }
         }

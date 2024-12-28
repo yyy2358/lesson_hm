@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>
+            {{title}}
+            <input type="text" v-model="title">
+        </h2>
+        <!-- <h1 @click="add">{{count}} * 2 = {{double}}</h1> -->
+    </div>
+    <script>
+        //组合式API 取代 选项式
+        const {ref,computed } = Vue
+
+let App = {
+setup() {
+  const title = ref('');
+  const todos = ref([]);
+
+  const all = computed(() => todos.value.length);
+  const active = computed(() => todos.value.filter(todo => !todo.done).length);
+
+  function addTodo() {
+    todos.value.push({title: title.value, done: false});
+    title.value = '';
+  }
+
+  return { title, todos, all, active, addTodo };
+}
+}
+
+Vue.createApp(App).mount('#app')
+</script>
+</body>
+</html>
