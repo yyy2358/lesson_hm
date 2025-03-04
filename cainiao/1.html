@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+</head>
+<body>
+    <h1>这是一个标题</h1>
+    <input type="text" placeholder="enter your name">
+    <input type="text" value="Default Value">
+    <input type="text" disabled><br/>
+    <!-- disabled为布尔属性 -->
+    <input type="checkbox" checked>
+    <input type="text" placeholder="thanks for checking me" readonly>
+    <input type="text" required placeholder="enter your name">
+
+    <div data-user-id="12345" data-role="admin">User Info</div> 
+    <!-- data-*属性用于存储页面或应用程序的私有自定义数据 -->
+
+    <a href="https://www.example.com" target="_blank" title="访问 Example 网站" style="color:red" rel="noopener noreferrer">Open in new tab</a>
+    <!-- _blank表示链接将在新的浏览器窗口或标签页中打开 target：定义链接的打开方式。noopener 和 noreferrer: 防止在新标签中打开链接时的安全问题-->
+    <a href="https://www.baidu.com">百度</a>
+
+    <button onclick="alert('Button clicked!')">click me</button>
+    <!-- 点击交互按钮后作用是弹出一个包含文本 “Button clicked!” 的提示框。 -->
+
+    <div onmouseover="this.style.backgroundColor='yellow'">Hover over me</div>
+    <!-- 鼠标悬停在div元素上时，会触发onmouseover事件，将div元素的背景颜色设置为蓝色。 -->
+     <!-- tab怎么只给出一行 -->
+    <input type="text" onchange="alert('Value changed!')">
+</body>
+</html>
