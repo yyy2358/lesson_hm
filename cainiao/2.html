@@ -4,6 +4,25 @@
 <meta charset="utf-8">
 <title>页面标题</title>
 <div id="header">This is the header</div>
+    <!-- <base href="http://www.runoob.com/images/" target="_blank"> -->
+    <!-- 表示所有链接点击后都会在新的浏览器窗口或标签页中打开。 -->
+    <style>
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #FF6B6B, transparent); /* 渐变背景 */
+        }
+        .text {
+            font-family: Arial, sans-serif; /* 设置字体 */
+            font-size: 16px; /* 设置字体大小 */
+        }
+        .highlight {
+            background-color: #ffeb3b; /* 设置背景颜色 */
+            color: #333; /* 设置文字颜色 */
+            padding: 5px; /* 设置内边距 */
+            border-radius: 3px; /* 设置圆角 */
+        }
+    </style>
 </head>
 
 <body>
@@ -21,20 +40,21 @@
 <img src="/images/logo.png" width="600" height="60" />
 
 <p style="color: blue; font-size: 14px;">This is a styled paragraph.</p>
-
+<!-- 用于直接在元素上应用 CSS 样式。 -->
 <p class="text highlight">This is a highlighted text.</p>
 
 <abbr title="HyperText Markup Language">HTML</abbr><br/>
-
+<!-- 为元素提供额外的提示信息，通常在鼠标悬停时显示。 -->
 <div data-user-id="12345">User Info</div><br/>
-
+<!-- data-*：用于存储自定义数据，通常通过 JavaScript 访问。 -->
 <input type="text" placeholder="Enter your name"><br/>
-
+<!-- type（用于 <input> 和 <button> 元素）：指定输入控件的类型。 -->
 <a href="document.pdf" download>下载文件</a><br/>
+<!-- 默认在基础url中下载文件 -->
 <a href="https://www.example.com"><img src="image.jpg" alt="示例图片"></a><br/>
 <a id="tips"></a>
 <a href="#tips">访问提示</a>
-<a href="">刷新</a>
+<a href="" target="_self">刷新</a>
 <!-- #是导航到页面顶部 ，about:blank打开空白页面-->
 </body>
 

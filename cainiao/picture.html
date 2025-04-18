@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .image-container {
+        text-align: center; /* 水平居中 */
+        margin-top: 20px; /* 可选：添加顶部间距 */
+    }img {
+           border:5px solid black; 
+    }.text-with-image {
+            display: flex;
+            align-items: center; /* 垂直居中对齐 */
+        }
+
+        .text-with-image img {
+            margin-left: auto; /* 让图片靠右 */
+        }
+         .no-border-img{
+            border: none; /* 移除边框 */
+        }
+    </style>
+</head>
+<body>
+    <h2>Mountain</h2>
+    <div class="image-container">
+    <img  src="mountain.jpg" alt="mountain.view" width="300" height="200" usemap="#mountainMap">
+    </div>
+    <p class="text-with-image">这是一些文本。 <img src="smiley.gif" alt="Smiley face"  width="32" height="32">这是一些文本。</p>
+    <!-- 这里把 class 属性放在 p 标签里，是因为要对整个段落元素应用 text-with-image 类的样式。 -->
+    <!-- style="float:right;" -->
+     <!-- 还可以使用Grid布局来实现图片和文本的对齐。 -->
+    <p >创建图片链接
+      <a href="https://www.baidu.com">
+        <img src="mountain.jpg" alt="mountain.view" width="300" height="200" class="no-border-img">
+        <!-- 这里把 class 属性放在 img 标签里，是为了给这个特定的图片元素应用 no-border-img 类对应的 CSS 样式。 -->
+      </a>
+    </p>
+
+    <!-- 定义图片映射区域： -->
+     <map name="mountainMap">
+        <!-- 定义一个矩形可点击区域 -->
+         <area shape="recct" coords="0,0,100,100" href="https://example.com/area1URL_ADDRESS" alt="Area 1">
+         <!-- 定义一个圆形可点击区域 -->
+         <area shape="circle" coords="200,100,50" href="https://example.com/area2" alt="Area 2">
+         <!-- 定义一个多边形可点击区域 -->
+         <area shape="poly" coords="250,150,300,150,275,200" href="https://example.com/area3" alt="Area 3">
+     </map>
+
+     <!-- HTML 里原生的 <map> 和 <area> 标签定义的图像映射区域没办法直接用 CSS 来填充颜色，
+    因为它们并非 DOM 元素，在文档树里没有对应的节点，CSS 无法直接作用于它们。 -->
+</body>
+</html>

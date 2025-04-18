@@ -6,13 +6,16 @@
 <body>
     <h1>这是一个标题</h1>
     <input type="text" placeholder="enter your name">
+    <!-- 在输入框中显示提示文本。 -->
     <input type="text" value="Default Value">
+    <!-- 属性为输入框设定了默认值 -->
     <input type="text" disabled><br/>
-    <!-- disabled为布尔属性 -->
+    <!-- disabled为布尔属性 禁用元素，使其不可交互。-->
     <input type="checkbox" checked>
+    <!-- 指定复选框或单选按钮是否被选中。 -->
     <input type="text" placeholder="thanks for checking me" readonly>
     <input type="text" required placeholder="enter your name">
-
+    <!-- required：指定输入字段为必填项 -->
     <div data-user-id="12345" data-role="admin">User Info</div> 
     <!-- data-*属性用于存储页面或应用程序的私有自定义数据 -->
 
@@ -27,5 +30,6 @@
     <!-- 鼠标悬停在div元素上时，会触发onmouseover事件，将div元素的背景颜色设置为蓝色。 -->
      <!-- tab怎么只给出一行 -->
     <input type="text" onchange="alert('Value changed!')">
+    <!-- 当元素的值发生变化时触发。 -->
 </body>
 </html>
