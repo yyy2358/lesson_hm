@@ -6,3 +6,39 @@ h2 {
     color: purple;
     border: 1px solid black;
 }
+html{
+    font-size: 10px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: yellow;
+}
+h1 {
+    margin: 0;
+    padding: 20px 0;
+    font-size: 40px;
+    text-align: center; 
+    color:red ;
+    text-shadow: 3px 3px 1px black;
+}
+p, li {
+    font-size: 16px;
+    line-height: 2; 
+    letter-spacing: 1px; 
+}
+body {
+    width: 600px;
+    margin: 0 auto;
+    background-color: #ff9500;
+    padding: 0 20px 20px 20px;
+    border: 5px solid black;
+  }
+/* 使用 auto 会让浏览器将剩余的空间平均分配给左右外边距， */
+/* 从而使元素在其父容器中水平居中。 */
+img{
+    display: block;
+    margin: 0 auto;
+}
+/* <body> 元素是块级元素，意味着它占据页面上的空间。页面上的其他元素会尊重为块级元素设置的外边距。 */
+/* 而图片是行级元素，所以为了使图像有外边距，我们必须使用 display: block 给予其块级行为。 */
+
+/* 块级元素会在页面中单独占据一行，
+无论其内容多少，后面的元素会自动换行显示在它的下方。 */
