@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- 创建一个挂载点 -->
+    <div id="root"></div>
+    <script type="text/babel">
+    const products = [
+  { title: 'Cabbage', isFruit: false, id: 1 },
+  { title: 'Garlic', isFruit: false, id: 2 },
+  { title: 'Apple', isFruit: true, id: 3 },
+];
+
+ function ShoppingList() {
+  const listItems = products.map(product =>
+    <li
+      key={product.id}
+      style={{
+        color: product.isFruit ? 'magenta' : 'darkgreen'
+      }}
+    >
+      {product.title}
+    </li>
+  );
+
+  return (
+    <div>
+    <ul>{listItems}</ul>
+    {/* 在这里渲染 Mybutton 组件 */}
+    <Mybutton />
+    </div>
+  );
+} 
+function Mybutton(){ 
+    function handleClick(){
+        alert('You clicked me!')
+    } 
+
+return(
+    <button onClick={handleClick}>Click me</button>
+);}
+// 渲染组件到挂载点
+ReactDOM.render(<ShoppingList />, document.getElementById('root'));
+</script>
+</body>
+</html>

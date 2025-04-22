@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入 React 库 -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!-- 引入 ReactDOM 库 -->
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- 引入 Babel 库用于转换 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 由于使用 CDN 引入，不需要 import 语句
+        // import {useState} from 'react';
+        function Myapp(){
+           return(
+            <div>
+                <h1>Counters that update separately</h1>
+                <Mybutton />
+                <Mybutton />
+            </div>
+           );
+        }
+        function Mybutton(){
+            // 修改为 React.useState
+            const [count,setCount] = React.useState(0);
+
+            function handleClick(){
+                setCount(count+1);
+                 // 使用函数式更新，避免闭包问题
+        // setCount(prevCount => prevCount + 1);
+            }
+            return(
+                <button onClick={handleClick}>Clicked {count} times</button>
+            );
+        }
+        ReactDOM.render(<Myapp />,document.getElementById('root'));
+    </script>
+
+</body>
+</html>

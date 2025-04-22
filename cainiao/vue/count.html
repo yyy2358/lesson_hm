@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Counter</title>
+      <!-- 通过 CDN 引入 Vue 3 的全局构建版本 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="count++">Count is: {{count}}</button>
+<!-- @click是Vue里的事件绑定指令,意思是当按钮被点击时触发一个事件，需要通过.value属性来修改其值 -->
+    </div>
+    
+    <script>
+        //import { createApp,ref } from 'vue'//引入了vue可以不写
+     // ref 创建响应式数据的函数
+
+      // 从全局的 Vue 对象中解构出 createApp 和 ref 方法
+     const { createApp,ref } = Vue;
+        createApp({
+            setup(){
+//这是 Vue 3 组合式 API 里的一个函数，在组件创建之前执行，用于组合组件的逻辑。                
+                return {
+                    count:ref(0)
+                }
+            }
+        }).mount('#app')
+    </script>
+  
+</body>
+</html>

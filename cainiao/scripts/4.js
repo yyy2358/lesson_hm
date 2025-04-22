@@ -14,10 +14,23 @@ let myButton = document.querySelector("button");
 let myHeading = document.querySelector("h1");
 
 function setUserName() {
-    const myName = prompt("请输入你的名字");
-    if (!myName) {
-        setUserName();
-      } else {
+  let myName;
+// 循环提示用户输入名字，直到输入有效内容
+while (true) {
+    myName = prompt("请输入你的名字");
+    // 如果用户点击取消，直接退出循环
+    if (myName === null) {
+        break;
+    }
+    // 去除输入的前后空格并检查是否为空
+    if (myName.trim() !== "") {
+      // myName.trim()会移除字符串开头和结尾的所有空白字符
+        myName = myName.trim();
+        break;
+    }
+    alert("请输入有效的名字");
+}
+    if (myName) {
     localStorage.setItem("name", myName);
     myHeading.textContent = `懒羊羊真可爱, ${myName}`;
   }}
