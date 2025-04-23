@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue3 Couter</title>
     <!-- Vue 3 
-    不是本地,通过cdn 引入   cdn:内容分发网络,引入就可以使用vue 
-    静态资源 (html、css、js、images)  动态(java、node、数据库 服务器集群)
+    不是本地,通过cdn 引入   cdn:内容分发网络,引入就可以使用vue  来自于cdn服务器
+    分发的是静态资源 (html、css、js、images)  动态(java、node、数据库 服务器集群)
     cdn 快速内容访问和发布的机制 -->
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.4.9/vue.global.js"></script> -->
     <script src=./vue.js></script>
 </head>
 <body>
@@ -20,7 +21,7 @@
          <p>Count:{{count}}</p>
          <button @click="increment">+1</button>
     </div>
-    <script type="module">
+    <script type="module">// 可以使用现代ES模块语法
     // console.log('hello vue3')
     const {
         createApp,//创建vue 应用

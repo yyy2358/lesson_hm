@@ -48,3 +48,52 @@ Apply
 这是 Vue 3 组合式 API 的核心
 在这里定义组件逻辑
 返回的对象中的属性可以在模板中使用
+
+
+# DOM
+（文档对象模型，Document Object Model）是HTML和XML文档的编程接口。它提供了对文档的结构化表示，
+
+- 在网站上动态渲染任意 HTML 是非常危险的，因为这非常容易造成 XSS 漏洞。请仅在内容安全可信时再使用 v-html，并且永远不要使用用户提供的 HTML 内容。
+
+<div id="container" class="wrapper" style="background-color:green"></div>
+=><div v-bind="objectOfAttrs"></div>
+
+{{ message.split('').reverse().join('') }}
+这个表达式会对 message 数据属性的值进行反转操作。message 是 Vue 实例或组件中定义的字符串类型的数据属性。split('') 方法将字符串拆分为字符数组，reverse() 方法将数组元素顺序反转，join('') 方法再把反转后的数组元素拼接成字符串。
+
+<div :id="`list-${id}`"></div>
+动态绑定表达式的结果会被作为字符串使用，所以 id 的值会变成 "list-xxx"。
+表达式不同于  语句
+
+
+-  v-on 指令，它将监听 DOM 事件：
+<a v-on:click="doSomething"> ... </a>
+<!-- 简写 -->
+<a @click="doSomething"> ... </a>
+这里的参数是要监听的事件名称：click。v-on 有一个相应的缩写，即 @ 字符。
+
+- template 是 Vue 组件的一个选项，用于定义组件的 HTML 结构。它描述了组件在页面上的呈现形式，能结合 Vue 的指令和插值表达式实现动态内容渲染与交互逻辑。
+
+<form @submit.prevent="onSubmit">...</form>
+- @submit 是 v-on:submit 的简写形式，v-on 是 Vue 中的指令，用于监听 DOM 事件。submit 是表单元素特有的事件，当用户点击表单中的提交按钮（<input type="submit"> 或 <button type="submit">）时会触发该事件。
+- .prevent
+.prevent 是 Vue 事件修饰符，它的作用是调用 event.preventDefault() 方法，阻止表单提交时的默认行为。在 HTML 中，表单提交的默认行为是向服务器发送请求并刷新页面，使用 .prevent 修饰符可以阻止这种默认行为，从而可以在前端使用 JavaScript 来处理表单数据。
+
+# ref
+注意，在模板中使用 ref 时，我们不需要附加 .value。为了方便起见，当在模板中使用时，ref 会自动解包
+
+# createApp() 函数
+createApp 函数定义在 vue 模块中，你可以使用它来创建应用实例，并且将组件挂载到 DOM 元素上。
+
+createApp API 允许你在同一个页面中创建多个共存的 Vue 应用，而且每个应用都拥有自己的用于配置和全局资源的作用域。
+const app1 = createApp({
+  /* ... */
+})
+app1.mount('#container-1')
+
+const app2 = createApp({
+  /* ... */
+})
+app2.mount('#container-2')
+
+# async  await
