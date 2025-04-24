@@ -97,3 +97,30 @@ const app2 = createApp({
 app2.mount('#container-2')
 
 # async  await
+
+# 响应式系统
+// 代理对象和原始对象不是全等的
+console.log(proxy === raw) // false
+
+// 创建一个空的响应式代理对象 proxy
+const proxy = reactive({});
+// 创建一个普通的空对象 raw
+const raw = {};
+// 将普通对象 raw 赋值给代理对象 proxy 的 nested 属性
+proxy.nested = raw;
+// 比较 proxy.nested 和 raw 是否相等
+console.log(proxy.nested === raw) // false
+
+- 结果为 false 的原因
+当你将 raw 对象赋值给 proxy 的 nested 属性时，Vue 的响应式系统会对 raw 进行深层的响应式处理，将其转换为一个新的代理对象。因此，proxy.nested 实际上是 raw 的一个响应式代理，而不是 raw 本身，所以 proxy.nested === raw 的结果为 false。
+
+- 当 ref 被嵌套在 reactive 对象中时，会自动解包，即访问 state.count 时实际上访问的是 count.value。
+
+- 在模板渲染上下文中，只有顶级的 ref 属性才会被解包。
+这意味着在模板中使用 ref 时，无需附加 .value，为开发提供了便利。
+在下面的例子中，count 和 object 是顶级属性，但 object.id 不是
+
+为了解决这个问题，我们可以将 id 解构为一个顶级属性：
+const { id } = object
+template
+{{ id + 1 }}：
