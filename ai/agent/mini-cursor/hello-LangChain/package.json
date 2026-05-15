@@ -1,0 +1,19 @@
+{
+  "name": "hello-langchain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@langchain/core": "^1.1.41",
+    "@langchain/openai": "^1.4.4",
+    "dotenv": "^17.4.2",
+    "langchain": "^1.3.4",
+    "zod": "^4.3.6"
+  }
+}

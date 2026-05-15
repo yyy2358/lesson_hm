@@ -87,3 +87,88 @@ git config --list
 cd .git   cd ..   
 讲的深入，跟故事一起记住，记得深
 HEAD -> master
+
+## 忽略文件
+打开Git Bash。
+导航到 Git 仓库的位置。
+为存储库创建 .gitignore 文件。
+touch .gitignore
+
+git rm --cached FILENAME
+
+git init之后
+# 1. 查看状态
+git status
+
+# 2. 添加文件到暂存区
+git add .
+
+# 3. 提交第一个版本
+git commit -m "第一次提交"
+
+git config --global core.excludesfile ~/.gitignore_global
+设置全局忽略文件路径
+# 查看全局忽略文件位置
+git config --global core.excludesfile
+
+# 查看文件内容
+cat ~/.gitignore_global
+# 创建一个测试文件夹
+mkdir test-global-ignore
+cd test-global-ignore
+git init
+
+# 创建一些应被忽略的文件
+touch .DS_Store
+touch test.tmp
+mkdir .vscode
+touch .vscode/settings.json
+
+# 查看状态（这些文件应该不显示）
+git status
+如果想全局忽略某个已在仓库中的文件，需要先取消跟踪：
+
+git rm --cached 文件名
+## git基本命令
+- git init 初始化一个全新的git存储库
+- git clone 克隆一个远程仓库到本地目录
+- git add. 提交到暂存区
+- git commit -m"" 提交到本地仓库
+- git push  origin main 提交到远程仓库
+- git status 将更改的状态显示为未跟踪、已修改或已暂存
+- git branch显示正在本地处理的分支
+- git merge 将开发线合并在一起。 此命令通常用于合并在两个不同分支上所做的更改。 例如，当开发人员想要将功能分支中的更改合并到主分支以进行部署时，他们会合并。
+- git pull 从远程仓库获取最新的更改并合并到当前分支
+- git checkout 切换分支
+- git push  origin --delete 删除远程分支(-d)git fetch --prune origin 删除远程分支的本地缓存
+- git branch -d 删除本地分支 
+- git branch -a 查看所有分支
+- git branch -r 查看所有远程分支
+
+- git checkout feature-old
+git branch -m feature-new 重命名分支 正在要重命名的分支上
+-  重命名指定分支
+git branch -m 旧分支名 新分支名
+- 重命名远程分支
+1. 重命名本地分支
+git branch -m feature-old feature-new
+2. 推送新分支到远程
+git push -u origin feature-new
+3. 删除旧的远程分支
+git push origin --delete feature-old
+
+更新其他协作者本地仓库
+ 1. 获取最新分支信息
+git fetch --all --prune
+ 2. 删除本地的旧分支
+git branch -d feature-old
+3. 切换到新分支
+git checkout feature-new
+
+# 常用参数
+-m   git commit -m (message 提交信息)
+     git branch -m (move/rename 该分支名)
+-a   git commit -a (all 提交所有已修改文件)
+-u   git push -u origin (--set-upstream 绑定远程分支以后直接git push/git pull)
+-r   git branch -r (查看远程分支)
+-d   git branch -d 名字 (删除本地分支) git push origin -d 名字 (删除远程分支)

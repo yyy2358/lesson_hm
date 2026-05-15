@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table</title>
+    <style>
+        table{
+            width: 200px;
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin:  0 auto;
+        }
+        td{
+            border: 1px solid black;
+            text-align: center;
+        }
+        caption{
+            font-size: 20px;
+        }
+        img{
+            margin: 0 5px;
+            width: 200px;
+            height: 150px;
+        }
+        .bgcolor{
+            background-color: gray;
+            text-align: left;
+        }
+        </style>
+</head>
+<body>
+    <table>
+        <caption>风景图</caption>
+        <tr>
+           <td><img src="image/1.jpg" ></td>  
+           <td><img src="image/2.jpg" ></td>
+           <td><img src="image/3.jpg" ></td>
+        </tr>
+        <tr>
+            <td>风景图1</td>
+            <td>风景图2</td>
+            <td>风景图3</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="bgcolor">这是一些风景的缩略图。</td>
+        </tr>
+    </table>
+</body>
+</html>

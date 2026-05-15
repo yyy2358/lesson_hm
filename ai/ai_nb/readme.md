@@ -42,3 +42,8 @@ pipeline 打开管道
   输入->LLM->输出
 
   - LLM需要算力，来自GPU
+
+  ai都进化到这个地步了  可以直接生成博文的代码
+  ![alt text](image.png)
+
+  按 Ctrl+Shift+V 打开预览
