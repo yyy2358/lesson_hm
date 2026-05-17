@@ -172,3 +172,6 @@ git checkout feature-new
 -u   git push -u origin (--set-upstream 绑定远程分支以后直接git push/git pull)
 -r   git branch -r (查看远程分支)
 -d   git branch -d 名字 (删除本地分支) git push origin -d 名字 (删除远程分支)
+
+git add ai/agent/mcp_in_action/mcp-test/main.mjs ; git status
+git commit -m "test commit"
