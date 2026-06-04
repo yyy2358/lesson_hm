@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE 流式接口测试</title>
+    <style>
+     * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        max-width: 640px;
+        margin: 2rem auto;
+        padding: 01rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+      button {
+        padding: 0.6rem1.2rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button.primary {
+        background: #2563eb;
+        color: white;
+      }
+      button.primary:hover {
+        background: #1d4ed8;
+      }
+      button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      .output {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        background: #f9fafb;
+        min-height: 120px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .output:empty::before {
+        content: "回复将显示在这里...";
+        color: #9ca3af;
+      }
+      .status {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+    </style>
+</head>
+<body>
+    <h1>SSE 流式接口测试</h1>
+    <label for="apiUrl">API地址</label>
+    <!-- 无障碍浏览 -->
+     <input 
+     type="text"
+     id="apiUrl"
+     value="http://localhost:3000"
+     placeholder="http://localhost:3000"
+     />
+     <!-- 传统的服务器端的后端开发 MVC纯后端开发方式 -->
+      <label for="query">问题：</label>
+      <input type="text" id="query" placeholder="请输入问题"
+      value="面试剪一个什么发型比较好？" />
+      <button>开始流式请求</button>
+      <p class="status" id="status"></p>
+      <div class="output" id="output"></div>
+</body>
+</html>
