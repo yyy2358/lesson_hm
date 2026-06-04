@@ -31,6 +31,12 @@ LangChain Community：存放社区贡献的第三方集成、工具、Loader、�
 
 - RecursiveCharacterTextSplitter  LangChain 最智能、最常用的文本分割器，按「语义优先」把长文本切成合适的 Chunk，不强行拆句子
     - 递归地按字符分割，直到每个 chunk 都小于等于指定的大小
+    - 大的任务拆到能执行为止的最小任务
+    - 首先用句号分割 达到语义连贯 在尝试逗号
+    - chunkSize 把段落进行分块  
+    - 在尊重语义连贯的前提下 尽可能把段落切分成多个chunk
+    - 重叠大小  用于合并相邻的 chunk，避免信息丢失 保证语义连贯
+
 
 - similaritySearchWithScore 返回的 score是“距离”而不是“相似度”
 - 相似度 = 1 - 距离
@@ -45,3 +51,8 @@ LangChain Community：存放社区贡献的第三方集成、工具、Loader、�
 
 
 把之前那个项目加上mcp skills rag
+
+- document  pagecontent 
+
+- 为什么要切割
+    - 大模型有上下文限制  问的问题尽可能聚焦
