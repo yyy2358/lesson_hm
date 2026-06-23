@@ -132,5 +132,9 @@ dist
 # IDE config
 .trae/
 
+# Claude Code local config & MCP secrets
+.claude/
+.mcp.json
+
 # Personal files
 ywk.pdf

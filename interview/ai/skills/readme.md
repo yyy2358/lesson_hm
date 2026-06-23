@@ -85,3 +85,9 @@ skills：在读取的同时按公司规划分析 + 输出报告
 把技能结合在一起  q-claw   小龙虾里面的就是一堆的skills
 ai面试官skills    maxmini装小龙虾
 
+
+
+Ralph Loop skills
+code review
+
+ui设计的skill

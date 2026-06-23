@@ -33,8 +33,9 @@ manus自动完成计划 在网上找资源卖了即使几十亿美金给Facebook
 
      - Claude code  个人风格 团队风格 代码样式产品 都可以记住 
    
-   AI Agent = llm + Memory + Tool + RAG
-
+   AI Agent = llm(大脑) + Memory + Tool + RAG   还有prompt(职责)
+   agent loop智能体循环  框架ReAct 推理加行动  本质：思考->行动->检查 (不好就继续循环 好了就输出)
+ 
 ## Agent 是什么?
 其实就是给大模型扩展了Tool和Memory,他本来就可以思考,规划,你给他用Tool 扩展了能力 他就可以**自动**做事情,用memory 管理记忆,他就可以记住你想让它记住的东西,还可以使用RAG,查询内部知识来获取知识(context)
   (一个智能的以完成任务为核心的一个产品,成长型)
@@ -76,3 +77,39 @@ AI  Agent 全栈开发   (Agentic engineering)
 - 把任务交给大模型 读取文件写代码  大模型没有能力直接操纵文件所以要借助tools  就是先调用工具 多个工具   promise并发执行
 
 - 工具使用的消息  可以带上工具使用的结果 和执行的结果是为哪个工具调用的id服务的  把这些打包给llm 有了执行工具完的上下文
+
+一面看基础 二面深挖项目 三面聊Agent系统设计和业务落地
+如果其中一个agent持续输出低质量结果怎么动态调整整个工作流 上下文怎么压缩 长对话怎么防止token爆炸
+rag项目  没有问什么是向量数据库 而是问如果召回结果质量越来越差会先排查哪一层 
+问题可能出在分块策略、embedding模型、检索方式上 
+如果让你做一个抖音创作者AI助手会怎么设计Agent架构 先聊业务流程
+为什么这么设 为什么不用别的方法 有没有踩过坑
+真实业务场景 客服agent 代码agent 创作者助手
+
+上下文压缩
+
+bm25信息检索经典打分算法
+公众号排版skills
+插件可以包含mcp
+安装别人的skills 在项目根目录下的.claude目录下/skills 只在项目里生效 比如项目专用的代码规范、部署流程
+自己去github上下载然后复制到项目根目录下的.claude目录下/skills
+在网站上用命令下载
+安装插件用斜杠命令来安装 /plugin install superpowers@claude-plugins-official 插件在官方
+插件在第三方市场 要先添加这个市场 比如 /plugin marketplace add obra/superpowers -marketplace
+/plugin install superpowers@superpowers-marketplace
+
+自己创skill 
+ - 必须要有SKILL.md文件 还可以放参考文档、示例模板、python脚本
+ - 文件开头要有元信息用两行 ---包起来
+ - 有name description字段
+ - 正文  具体指令 比如分几步走 用什么格式 注意什么事项
+ 比如创建一个帮你写Git提交信息的skill    
+也可以直接告诉cc让它给你创建 比如“帮我创建一个写commit message的skill”
+或者 /skill-creator这个内置技能 会一步步引导你创建
+会自动触发skill  要写好description
+元信息里加 disable-model-invocation:true就不会自动触发了 比如自动部署skill
+user-invocable:false 用户看不到技能
+/skills列出所有skill
+删除插件装的skill 用/plugin ->installed ->show disabled
+官方插件市场 /plugin -> Discover
+github 搜索Claude code skill  或Claude code plugin
