@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+const sleep = (n) => new Promise((resolve) => setTimeout(resolve, n*1000))
+const main = () => {
+  // 并行呢？
+  // await sleep(3);
+  // await sleep(2);
+  return Promise.race([sleep(3), sleep(2), sleep(4)])
+} 
+console.time("sleep");
+main()
+  .then(() => {
+    console.timeEnd("sleep");
+  })
+
+</script>
+</body>
+</html>

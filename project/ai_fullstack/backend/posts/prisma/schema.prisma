@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique @db.VarChar(255)
+  password    String     @db.VarChar(255)
+  createdAt   DateTime?  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime?  @default(now()) @map("updated_at") @db.Timestamptz(6)
+  posts       Post[]
+  comments    Comment[]
+  likes       UserLikePost[]
+  avatars     Avatar[]
+  files       File[]
+  @@map("users")
+}
+
+model Post {
+  id          Int        @id @default(autoincrement())
+  title       String     @db.VarChar(255)
+  content     String?    @db.Text
+  userId      Int?
+  user        User?      @relation(fields:[userId], references: [id], onDelete: SetNull)
+  comments    Comment[]
+  tags        PostTag[]
+  likes       UserLikePost[]
+  files       File[]
+  @@index([userId])
+  @@map("posts")
+}
+
+model Comment {
+  id          Int        @id @default(autoincrement())
+  content     String?    @db.Text
+  postId      Int
+  userId      Int
+  parentId    Int?
+
+  post        Post        @relation(fields: [postId], references: [id], onDelete:Cascade)
+  user        User        @relation(fields: [userId], references: [id], onDelete:Cascade)
+  parent      Comment?    @relation("CommentToComment", fields:[parentId], references:[id], onDelete: Cascade)   
+  replies     Comment[]   @relation("CommentToComment")
+
+  @@index([postId])
+  @@index([userId])
+  @@index([parentId])
+  @@map("comments")
+}
+
+model Tag {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique @db.VarChar(255)
+  posts     PostTag[]
+  @@map("tags")
+}
+
+model PostTag {
+  postId     Int
+  tagId      Int 
+  post       Post      @relation(fields: [postId], references: [id], onDelete: Cascade)  
+  tag        Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade) 
+
+  @@id([postId, tagId]) 
+
+  @@index([tagId])
+
+  @@map("post_tags")  
+}
+
+model UserLikePost {
+  userId      Int
+  postId      Int 
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post        Post        @relation(fields: [postId], references: [id], onDelete: Cascade)
+  @@id([userId, postId])
+  @@index([postId])
+  @@map("user_like_posts")
+}
+
+model Avatar {
+  id          Int        @id @default(autoincrement())
+  mimetype    String     @db.VarChar(255)
+  filename    String     @db.VarChar(255)
+  size        Int
+  userId      Int 
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+  @@map("avatars")
+}
+
+model File {
+  id           Int      @id @default(autoincrement())
+  // originalname 对应 varchar(255)
+  originalname String   @db.VarChar(255)
+  // mimetype 对应 varchar(255)
+  mimetype     String   @db.VarChar(255)
+  // filename 对应 varchar(255)
+  filename     String   @db.VarChar(255)
+  // size 对应 int(11)
+  size         Int
+  
+  // width/height 对应 smallint(6)
+  // 在 PostgreSQL 中，smallint 映射为 Int 并添加 @db.SmallInt
+  width        Int      @db.SmallInt
+  height       Int      @db.SmallInt
+  // metadata 对应 json
+  // PostgreSQL 完美支持 native JSON 类型
+  metadata     Json?
+  // 外键字段
+  postId       Int?     // 对应 DEFAULT NULL
+  userId       Int      // 对应 NOT NULL
+
+  // 关系定义
+  // 关联到 Post：当帖子删除时，文件关联设为 null（因为 postId 允许为空）
+  post         Post?    @relation(fields: [postId], references: [id], onDelete: SetNull)
+  
+  // 关联到 User：当用户删除时，级联删除其上传的文件
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // 对应 MySQL 中的 KEY 索引
+  @@index([postId])
+  @@index([userId])
+
+  // 按照之前的习惯，映射为复数形式
+  @@map("files")
+}
